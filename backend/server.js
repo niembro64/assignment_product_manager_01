@@ -12,12 +12,14 @@ const AllMyUserRoutes = require("./server/routes/user.routes");
 AllMyUserRoutes(app);
 const AllMyJokesRoutes = require("./server/routes/jokes.routes");
 AllMyJokesRoutes(app);
+const AllMyPMRoutes = require("./server/routes/pm.routes");
+AllMyJokesRoutes(app);
 
 
 
 app.get("/api", (req, res) => {
     console.log("trying to talk to database");
-    res.json({ assignment: "Niemo Assignment Jokes API" , port: port});
+    res.json({ assignment: "Niemo Assignment Project Manager" , port: port});
   });
 
 
