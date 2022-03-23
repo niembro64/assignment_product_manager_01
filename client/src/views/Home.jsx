@@ -78,7 +78,7 @@ const Home = (props) => {
 
   return (
     <>
-      <Link to="/33">Single</Link>
+      <Link to="/623aa2b8ccf744f571fdcbab">Single</Link>
       <form onSubmit={onSubmitHandler} className="box2">
         <div className="box">
           <label htmlFor="title">Title</label>

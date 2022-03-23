@@ -2,7 +2,11 @@ import React from "react";
 import { useEffect, useState, createElement } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Switch, Route, Link } from 'react-router-dom';
+import axios from "axios";
 
+const p = (a) => {
+  console.log(a);
+};
 const Single = (props) => {
   const { _id } = useParams();
   const [one, setOne] = useState({
@@ -11,7 +15,19 @@ const Single = (props) => {
     description: "default",
   });
 
-  useEffect(() => {}, [_id]);
+  useEffect(() => {
+    p("useEffect Running");
+
+    axios
+      .get(`http://localhost:9000/api/pm/${_id}`)
+      .then((res) => {
+        console.log(res.data);
+        setOne(res.data);
+      })
+      .catch((err) => console.log(err));
+
+
+  }, [_id]);
 
   return (
     <>
