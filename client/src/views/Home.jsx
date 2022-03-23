@@ -53,7 +53,7 @@ const Home = (props) => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    p("onSubmitHandler");
+    // p("onSubmitHandler");
 
     axios
       .post("http://localhost:9000/api/pm/create", form)
@@ -76,7 +76,8 @@ const Home = (props) => {
   };
 
   const getURL = (event) => {
-    p(event);
+    console.log("/" + event.target._id);
+    return "/" + event.target._id;
   };
 
   return (
@@ -129,15 +130,19 @@ const Home = (props) => {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
             <div className="box" key={i}>
-              {/* <Link to="/${item._id}">Go</Link> */}
-              {/* <Link to="/623aa2b8ccf744f571fdcbab">Go</Link> */}
-              <Link
+              {/* <Link
                 to={(event) => {
                   getURL(event);
                 }}
               >
                 Go
-              </Link>
+              </Link> */}
+              <button
+              className="btn btn-primary mx-4"
+                onClick={(event) => {
+                  getURL(event);
+                }}
+              >View One</button>
               <p name="_id">{item._id}</p>
               <p name="title">{item.title}</p>
               <p name="price">{item.price}</p>
