@@ -12,7 +12,7 @@ function App() {
     description: "default",
   });
   const [fromDb, setFromDb] = useState([
-    { title: "a", price: 0, description: "b" },
+    
   ]);
 
   useEffect(() => {
