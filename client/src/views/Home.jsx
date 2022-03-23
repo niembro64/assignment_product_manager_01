@@ -77,7 +77,7 @@ const Home = (props) => {
   };
 
   return (
-    <div>
+    <>
       <Link to="/33">Single</Link>
       <form onSubmit={onSubmitHandler} className="box2">
         <div className="box">
@@ -133,7 +133,7 @@ const Home = (props) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
