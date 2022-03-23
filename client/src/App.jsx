@@ -3,6 +3,9 @@ import "./App.css";
 import axios from "axios";
 import React, { useEffect, useState, createElement } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
   const [dbtest, setDbtest] = useState({ assignment: "none", port: 0 });
@@ -12,6 +15,8 @@ function App() {
     description: "default",
   });
   const [fromDb, setFromDb] = useState([]);
+  const history = useHistory();
+  // history.push(`/${category}/${detail}`);
 
   useEffect(() => {
     p("useEffect Running");
@@ -123,14 +128,14 @@ function App() {
         {fromDb.map((item, i) => {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
-            <div className="box">
-              <p name={item.title} key={i}>
+            <div className="box" key={i}>
+              <p name={item.title}>
                 {item.title}
               </p>
-              <p name={item.price} key={i}>
+              <p name={item.price}>
                 {item.price}
               </p>
-              <p name={item.description} key={i}>
+              <p name={item.description}>
                 {item.description}
               </p>
             </div>
