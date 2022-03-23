@@ -26,13 +26,7 @@ function App() {
       .catch((err) => console.log(err));
 
     // pulling elements
-    axios
-      .get("http://localhost:9000/api/pm/")
-      .then((res) => {
-        // console.log(res.data);
-        setFromDb(res.data);
-      })
-      .catch((err) => console.log(err));
+    updateFromDb();
   }, []);
 
   const p = (a) => {
@@ -45,6 +39,16 @@ function App() {
     // p(event.target.value);
   };
 
+  const updateFromDb = () => {
+    axios
+      .get("http://localhost:9000/api/pm/")
+      .then((res) => {
+        // console.log(res.data);
+        setFromDb(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     p("onSubmitHandler");
@@ -55,6 +59,7 @@ function App() {
       .catch((err) => console.log(err));
 
     // p(event.target.value);
+    updateFromDb();
   };
 
   const onChangeHandler = (event) => {
