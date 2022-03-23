@@ -13,7 +13,7 @@ AllMyUserRoutes(app);
 const AllMyJokesRoutes = require("./server/routes/jokes.routes");
 AllMyJokesRoutes(app);
 const AllMyPMRoutes = require("./server/routes/pm.routes");
-AllMyJokesRoutes(app);
+AllMyPMRoutes(app);
 
 
 
