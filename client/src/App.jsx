@@ -5,6 +5,7 @@ import React, { useEffect, useState, createElement } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
+  const [form, setForm] = useState({title: "default", price: "default", description: "default"})
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -12,11 +13,21 @@ function App() {
 
   useEffect(() => {
     p("useEffect Running");
+
+    // pulling hello data
     axios
       .get("http://localhost:9000/api")
       .then((res) => {
+        // console.log(res);
+        setDbtest(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    // pulling elements
+    axios
+      .get("http://localhost:9000/api/pm/")
+      .then((res) => {
         console.log(res);
-        setDbtest(res.data)
       })
       .catch((err) => console.log(err));
   }, []);
@@ -40,10 +51,7 @@ function App() {
   return (
     <div className="App">
       <h1>Assignment Product Manager</h1>
-      <div>
-        <p>Assignment: {dbtest.assignment}</p>
-        <p>Port: {dbtest.port}</p>
-      </div>
+
       <form onSubmit={onSubmitHandler}>
         <div className="box">
           <label htmlFor="title">Title</label>
@@ -61,6 +69,10 @@ function App() {
           Create PM
         </button>
       </form>
+      <div className="box">
+        <p>Assignment: {dbtest.assignment}</p>
+        <p>Port: {dbtest.port}</p>
+      </div>
     </div>
   );
 }
