@@ -11,9 +11,7 @@ function App() {
     price: "default",
     description: "default",
   });
-  const [fromDb, setFromDb] = useState([
-    
-  ]);
+  const [fromDb, setFromDb] = useState([]);
 
   useEffect(() => {
     p("useEffect Running");
@@ -44,19 +42,25 @@ function App() {
   const onClickHandler = (event) => {
     event.preventDefault();
 
-    p(event.target.value);
+    // p(event.target.value);
   };
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    p("onSubmitHandler");
 
-    p(event.target.value);
+    axios
+      .post("http://localhost:9000/api/pm/create", form)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+
+    // p(event.target.value);
   };
 
   const onChangeHandler = (event) => {
     event.preventDefault();
 
-    p(event.target.value);
+    // p(event.target.value);
     const newState = {
       ...form,
       [event.target.name]: event.target.value,
@@ -68,7 +72,7 @@ function App() {
     <div className="App">
       <h1>Assignment Product Manager</h1>
 
-      <form onSubmit={onSubmitHandler}>
+      <form onSubmit={onSubmitHandler} className="box2">
         <div className="box">
           <label htmlFor="title">Title</label>
           <input type="text" name="title" onChange={onChangeHandler} />
@@ -81,24 +85,40 @@ function App() {
           <label htmlFor="description">Description</label>
           <input type="text" name="description" onChange={onChangeHandler} />
         </div>
-        <button className="btn btn-primary mx-4" onClick={onClickHandler}>
+        <input type="submit" className="btn btn-primary mx-4" />
+
+        {/* <button className="btn btn-primary mx-4" onClick={onClickHandler}>
           Create PM
-        </button>
+        </button> */}
       </form>
-      <div className="box">
-        <p>Assignment: {dbtest.assignment}</p>
-        <p>Port: {dbtest.port}</p>
+
+      <div className="box2">
+        <p>from Form:</p>
+        <div className="box">
+          <div className="box2">
+            <p>Title: {form.title}</p>
+          </div>
+          <div className="box2">
+            <p>Price: {form.price}</p>{" "}
+          </div>{" "}
+          <div className="box2">
+            <p>Description: {form.description}</p>{" "}
+          </div>
+        </div>
       </div>
-      <div className="box">
-        <p>Title: {form.title}</p>
-        <p>Price: {form.price}</p>
-        <p>Description: {form.description}</p>
+      <div className="box2">
+        <p>from DB:</p>
+        <div className="box">
+          <p>Assignment: {dbtest.assignment}</p>
+          <p>Port: {dbtest.port}</p>
+        </div>
       </div>
-      <div className="box">
+      <div className="box2">
+        <p>from DB:</p>
         {fromDb.map((item, i) => {
-          console.log(`function run ${i}, item: ${item.title}`);
+          // console.log(`function run ${i}, item: ${item.title}`);
           return (
-            <div>
+            <div className="box">
               <p name={item.title} key={i}>
                 {item.title}
               </p>
