@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState, createElement } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { Switch, Route, Link } from "react-router-dom";
-
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Home = (props) => {
@@ -76,6 +75,10 @@ const Home = (props) => {
     setForm(newState);
   };
 
+  const getURL = (event) => {
+    p(event);
+  };
+
   return (
     <>
       <Link to="/623aa2b8ccf744f571fdcbab">Single</Link>
@@ -107,7 +110,7 @@ const Home = (props) => {
           </div>
           <div className="box2">
             <p>Price: {form.price}</p>{" "}
-          </div>{" "}
+          </div>
           <div className="box2">
             <p>Description: {form.description}</p>{" "}
           </div>
@@ -126,6 +129,16 @@ const Home = (props) => {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
             <div className="box" key={i}>
+              {/* <Link to="/${item._id}">Go</Link> */}
+              {/* <Link to="/623aa2b8ccf744f571fdcbab">Go</Link> */}
+              <Link
+                to={(event) => {
+                  getURL(event);
+                }}
+              >
+                Go
+              </Link>
+              <p name="_id">{item._id}</p>
               <p name="title">{item.title}</p>
               <p name="price">{item.price}</p>
               <p name="description">{item.description}</p>
