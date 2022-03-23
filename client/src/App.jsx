@@ -129,13 +129,13 @@ function App() {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
             <div className="box" key={i}>
-              <p name={item.title}>
+              <p name="title">
                 {item.title}
               </p>
-              <p name={item.price}>
+              <p name="price">
                 {item.price}
               </p>
-              <p name={item.description}>
+              <p name="description">
                 {item.description}
               </p>
             </div>
