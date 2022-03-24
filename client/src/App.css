@@ -31,11 +31,13 @@
   border: solid 1px black;
   padding: 0 0 0 8px;
   position: relative;
+  margin: 20px 10px 0px 10px;
+  border-radius: 2px;
 }
 .float-container input {
   border: none;
   font-size: 16px;
-  margin: 0px 0 5px;
+  margin: 0 0 5px;
   outline: 0;
 
 }
@@ -45,14 +47,16 @@ label {
   position: absolute;
   transform-origin: top left;
   transform: translate(0, 3px) scale(1);
-  transition: all .1s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 .float-container.active label {
-  transform: translate(-5px, -18px) scale(.75);
-  border: 1px solid black;
+  /* transform: translate(-12px, -15px) scale(.75); */
+  transform: translate(-12px, -17px) scale(.75);
+  /* border: 1px solid black; */
   color: black;
-  font-weight: bold;
+  /* font-weight: bold; */
   border-radius: 2px;
-  background-color: rgb(236, 236, 236);
-  padding: 0px 15px 0px 15px;
+  background-color: white;
+  /* background-color: rgb(236, 236, 236); */
+  padding: 0px 3px 0px 3px;
 }

@@ -137,13 +137,13 @@ const Home = (props) => {
           <label htmlFor="title">Title</label>
           <input id="floatField" type="text" name="title" onChange={onChangeHandler} />
         </div>
-        <div className="box">
+        <div id="floatContainer" className="float-container">
           <label htmlFor="price">Price</label>
-          <input type="text" name="price" onChange={onChangeHandler} />
+          <input id="floatField" type="text" name="price" onChange={onChangeHandler} />
         </div>
-        <div className="box">
+        <div id="floatContainer" className="float-container">
           <label htmlFor="description">Description</label>
-          <input type="text" name="description" onChange={onChangeHandler} />
+          <input id="floatField" type="text" name="description" onChange={onChangeHandler} />
         </div>
         <input type="submit" className="btn btn-primary mx-4" />
       </form>
