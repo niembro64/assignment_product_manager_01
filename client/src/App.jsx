@@ -20,6 +20,9 @@ function App() {
         <Route exact path="/:_id">
           <Single />
         </Route>
+        <Route exact path="/:_id/edit">
+          <Single />
+        </Route>
       </Switch>
     </div>
   );

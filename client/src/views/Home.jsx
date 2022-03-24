@@ -7,9 +7,9 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Home = (props) => {
   const [dbtest, setDbtest] = useState({ assignment: "none", port: 0 });
   const [form, setForm] = useState({
-    title: "default",
-    price: "default",
-    description: "default",
+    title: "",
+    price: "",
+    description: "",
   });
   const [fromDb, setFromDb] = useState([]);
   const history = useHistory();
@@ -31,12 +31,6 @@ const Home = (props) => {
 
   const p = (a) => {
     console.log(a);
-  };
-
-  const onClickHandler = (event) => {
-    event.preventDefault();
-
-    // p(event.target.value);
   };
 
   const updateFromDb = () => {
@@ -73,9 +67,21 @@ const Home = (props) => {
     setForm(newState);
   };
 
+  const onDeleteHandler = (_id, arrIndex) => {
+    console.log("inside on click delete");
+    axios
+      .delete(`http://localhost:9000/api/pm/delete/${_id}`)
+      .then((res) => {
+        console.log(res.data);
+        const copyState = [...fromDb];
+        copyState.splice(arrIndex, 1);
+        setFromDb(copyState);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-      <Link to="/623aa2b8ccf744f571fdcbab">Single</Link>
       <form onSubmit={onSubmitHandler} className="box2">
         <div className="box">
           <label htmlFor="title">Title</label>
@@ -90,12 +96,7 @@ const Home = (props) => {
           <input type="text" name="description" onChange={onChangeHandler} />
         </div>
         <input type="submit" className="btn btn-primary mx-4" />
-
-        {/* <button className="btn btn-primary mx-4" onClick={onClickHandler}>
-          Create PM
-        </button> */}
       </form>
-
       <div className="box2">
         <p>from Form:</p>
         <div className="box">
@@ -110,43 +111,15 @@ const Home = (props) => {
           </div>
         </div>
       </div>
-      {/* <div className="box2">
-        <p>from DB:</p>
-        <div className="box">
-          <p>Assignment: {dbtest.assignment}</p>
-          <p>Port: {dbtest.port}</p>
-        </div>
-      </div> */}
-      {/* <div className="box2">
-        <p>from DB:</p>
-        {fromDb.map((item, i) => {
-          // console.log(`function run ${i}, item: ${item.title}`);
-          return (
-            <>
-              <div className="box" key={i}>
-                <Link to={`/${item._id}`}>
-                  <button className="btn btn-primary mx-4">View</button>
-                </Link>
-                <Link to={`/${item._id}`}>
-                  <button className="btn btn-primary mx-4">Delete</button>
-                </Link>
-                <p name="_id">{item._id}</p>
-                <p name="title">{item.title}</p>
-                <p name="price">{item.price}</p>
-                <p name="description">{item.description}</p>
-              </div>
-            </>
-          );
-        })}
-      </div> */}
       <div className="box">
-        <table className="table table-light table-striped table-hover">
+        <table className="table table-sm table-hover ">
           <thead>
             <tr>
               {/* <th>ID</th> */}
+              <th>#</th>
               <th>Title</th>
               <th>Price</th>
-              <th>Description</th>
+              {/* <th>Description</th> */}
               <th></th>
               <th></th>
               <th></th>
@@ -158,22 +131,28 @@ const Home = (props) => {
               return (
                 <tr key={i}>
                   {/* <td>{item._id}</td> */}
+                  <td>{i + 1}</td>
                   <td>{item.title}</td>
                   <td>{item.price}</td>
-                  <td>{item.description}</td>
+                  {/* <td>{item.description}</td> */}
                   <td>
                     <Link to={`/${item._id}`}>
-                      <button className="btn btn-secondary mx-4">View</button>
+                      <button className="btn btn-secondary btn-sm">View</button>
                     </Link>
                   </td>
                   <td>
-                    <Link to={`/${item._id}`}>
-                      <button className="btn btn-success mx-4">Edit</button>
+                    <Link to={`/${item._id}/edit`}>
+                      <button className="btn btn-success btn-sm">Edit</button>
                     </Link>
                   </td>
                   <td>
-                    <Link to={`/${item._id}`}>
-                      <button className="btn btn-danger mx-4">Delete</button>
+                    <Link to={`/`}>
+                      <button
+                        onClick={() => onDeleteHandler(item._id, i)}
+                        className="btn btn-danger btn-sm"
+                      >
+                        Delete
+                      </button>
                     </Link>
                   </td>
                 </tr>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState, createElement } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 
 const p = (a) => {
@@ -25,19 +25,56 @@ const Single = (props) => {
         setOne(res.data);
       })
       .catch((err) => console.log(err));
-
-
   }, [_id]);
+
+  const onDeleteHandler = (_id) => {
+    console.log("inside on click delete");
+    axios
+      .delete(`http://localhost:9000/api/pm/delete/${_id}`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
-    {/* <Link href="http://localhost:3000/">Home</Link> */}
-    <Link to="/">Home</Link>
-        <div className="box2">
-        <h1>{one.title}</h1>
-        <p>Price: {one.price}</p>
-        <p>Description: {one.description}</p>
-      </div>
+      <div className="box">
+        <Link to={"/"}>
+          <button className="btn btn-secondary btn-sm">Back</button>
+        </Link>
+        <Link to={`/${one._id}/edit`}>
+          <button className="btn btn-success btn-sm">Edit</button>
+        </Link>
+        <Link to={`/`}>
+          <button
+            onClick={() => {
+              onDeleteHandler(one._id);
+            }}
+            className="btn btn-danger btn-sm"
+          >
+            delete{" "}
+          </button>
+        </Link>
+      </div>{" "}
+      <div className="box">
+        <table className="table table-sm table-hover ">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(one).map((item, i) => {
+              return (
+                <tr key={i}>
+                  <td>{item[0]}</td>
+                  <td>{item[1]}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>{" "}
     </>
   );
 };

@@ -9,7 +9,7 @@
 .box {
   width: 90%;
   border: 1px black solid;
-  background-color: peachpuff;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   padding: 5px 15px;
@@ -18,7 +18,7 @@
 .box2 {
   width: 90%;
   border: 1px black solid;
-  background-color: rgb(193, 255, 185);
+  background-color: rgba(185, 209, 255, 0.445);
   display: flex;
   flex-direction: column;
   align-items: center;
