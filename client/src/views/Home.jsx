@@ -140,7 +140,7 @@ const Home = (props) => {
         })}
       </div> */}
       <div className="box">
-        <table className="table table-dark table-striped table-hover">
+        <table className="table table-light table-striped table-hover">
           <thead>
             <tr>
               {/* <th>ID</th> */}
@@ -156,7 +156,7 @@ const Home = (props) => {
             {fromDb.map((item, i) => {
               // console.log(`function run ${i}, item: ${item.title}`);
               return (
-                <tr>
+                <tr key={i}>
                   {/* <td>{item._id}</td> */}
                   <td>{item.title}</td>
                   <td>{item.price}</td>
