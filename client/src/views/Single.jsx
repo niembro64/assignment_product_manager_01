@@ -58,7 +58,7 @@ const Single = (props) => {
             delete{" "}
           </button>
         </Link>
-      </div>{" "}
+      </div>
       <div className="box">
         <table className="table table-sm table-hover ">
           <thead>

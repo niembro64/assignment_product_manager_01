@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
 import Home from './views/Home';
 import Single from './views/Single';
+import Edit from './views/Edit';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <Single />
         </Route>
         <Route exact path="/:_id/edit">
-          <Single />
+          <Edit />
         </Route>
       </Switch>
     </div>
