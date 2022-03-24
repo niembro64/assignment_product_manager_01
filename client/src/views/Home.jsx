@@ -133,7 +133,7 @@ const Home = (props) => {
 
   return (
     <>
-      <form onSubmit={onSubmitHandler} className="box2">
+      <form onSubmit={onSubmitHandler} className="box3">
         <div id="floatContainer" className="float-container">
         <label style={{position: "absolute", zIndex: 1}} htmlFor="description">Title</label>
         <input style={{position: "relative", zIndex: 2}}
@@ -143,6 +143,8 @@ const Home = (props) => {
             name="title"
             onChange={onChangeHandler}
             
+            // placeholder=""
+            // default="asdf"
           />
         </div>
         <div id="floatContainer" className="float-container">

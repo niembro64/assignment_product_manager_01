@@ -28,9 +28,7 @@ const Single = (props) => {
   }, [_id]);
 
   const onDeleteHandler = (_id) => {
-    if (
-      window.confirm(`Are you sure you want to delete this item?`)
-    ) {
+    if (window.confirm(`Are you sure you want to delete this item?`)) {
       console.log("inside on click delete");
       axios
         .delete(`http://localhost:9000/api/pm/delete/${_id}`)
@@ -73,6 +71,9 @@ const Single = (props) => {
                 <tr key={i}>
                   <td>{item[0]}</td>
                   <td>{item[1]}</td>
+                  {/* <td style={{(item[1].length > 10 ? { fontSize: "10px" } : {fontSize = "20px"})}}>
+                    {item[1]}
+                  </td> */}
                 </tr>
               );
             })}
