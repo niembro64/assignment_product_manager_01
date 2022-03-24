@@ -67,9 +67,9 @@ const Home = (props) => {
     setForm(newState);
   };
 
-  const onDeleteHandler = (_id, arrIndex) => {
+  const onDeleteHandler = (_id, arrIndex, name) => {
     if (
-      window.confirm(`Are you sure you want to delete item ${arrIndex + 1}?`)
+      window.confirm(`Are you sure you want to delete item ${name}?`)
     ) {
       console.log("inside on click delete");
       axios
@@ -85,75 +85,96 @@ const Home = (props) => {
   };
 
   const FloatLabel = (() => {
-  
     // add active class
     const handleFocus = (e) => {
       const target = e.target;
-      target.parentNode.classList.add('active');
-      target.setAttribute('placeholder', target.getAttribute('data-placeholder'));
+      target.parentNode.classList.add("active");
+      target.setAttribute(
+        "placeholder",
+        target.getAttribute("data-placeholder")
+      );
     };
-    
+
     // remove active class
     const handleBlur = (e) => {
       const target = e.target;
-      if(!target.value) {
-        target.parentNode.classList.remove('active');
+      if (!target.value) {
+        target.parentNode.classList.remove("active");
       }
-      target.removeAttribute('placeholder');
+      target.removeAttribute("placeholder");
     };
-    
+
     // register events
     const bindEvents = (element) => {
-      const floatField = element.querySelector('input');
-      floatField.addEventListener('focus', handleFocus);
-      floatField.addEventListener('blur', handleBlur);    
+      const floatField = element.querySelector("input");
+      floatField.addEventListener("focus", handleFocus);
+      floatField.addEventListener("blur", handleBlur);
     };
-    
+
     // get DOM elements
     const init = () => {
-      const floatContainers = document.querySelectorAll('.float-container');
-  
+      const floatContainers = document.querySelectorAll(".float-container");
+
       floatContainers.forEach((element) => {
-  
-        if (element.querySelector('input').value) {
-          element.classList.add('active');
+        if (element.querySelector("input").value) {
+          element.classList.add("active");
         }
-  
+
         bindEvents(element);
       });
     };
-    
+
     return {
-      init: init
+      init: init,
     };
   })();
-  
+
   FloatLabel.init();
 
   return (
     <>
       <form onSubmit={onSubmitHandler} className="box2">
         <div id="floatContainer" className="float-container">
-          <label htmlFor="title">Title</label>
-          <input id="floatField" type="text" name="title" onChange={onChangeHandler} />
+        <label style={{position: "absolute", zIndex: 1}} htmlFor="description">Title</label>
+        <input style={{position: "relative", zIndex: 2}}
+            autoFocus="autofocus"
+            id="floatField"
+            type="text"
+            name="title"
+            onChange={onChangeHandler}
+            
+          />
         </div>
         <div id="floatContainer" className="float-container">
-          <label htmlFor="price">Price</label>
-          <input id="floatField" type="text" name="price" onChange={onChangeHandler} />
+        <label style={{position: "absolute", zIndex: 1}} htmlFor="description">Price</label>
+          <input style={{position: "relative", zIndex: 2}}
+            id="floatField"
+            type="text"
+            name="price"
+            onChange={onChangeHandler}
+          />
         </div>
         <div id="floatContainer" className="float-container">
-          <label htmlFor="description">Description</label>
-          <input id="floatField" type="text" name="description" onChange={onChangeHandler} />
+          <label style={{position: "absolute", zIndex: 1}} htmlFor="description">Description</label>
+          <input style={{position: "relative", zIndex: 2}}
+            id="floatField"
+            type="text"
+            name="description"
+            onChange={onChangeHandler}
+            // placeholder="aegag"
+            // default="hi"
+            // value={value == null ? "" : value}
+          />
         </div>
         <input type="submit" className="btn btn-primary mx-4" />
       </form>
-   
+
       <div className="box">
         <table className="table table-sm table-hover ">
           <thead>
             <tr>
               {/* <th>ID</th> */}
-              <th>#</th>
+              {/* <th>#</th> */}
               <th>Title</th>
               <th>Price</th>
               {/* <th>Description</th> */}
@@ -168,7 +189,7 @@ const Home = (props) => {
               return (
                 <tr key={i}>
                   {/* <td>{item._id}</td> */}
-                  <td>{i + 1}</td>
+                  {/* <td>{i + 1}</td> */}
                   <td>{item.title}</td>
                   <td>{item.price}</td>
                   {/* <td>{item.description}</td> */}
@@ -185,7 +206,7 @@ const Home = (props) => {
                   <td>
                     <Link to={`/`}>
                       <button
-                        onClick={() => onDeleteHandler(item._id, i)}
+                        onClick={() => onDeleteHandler(item._id, i, item.title)}
                         className="btn btn-danger btn-sm"
                       >
                         Delete
