@@ -147,20 +147,7 @@ const Home = (props) => {
         </div>
         <input type="submit" className="btn btn-primary mx-4" />
       </form>
-      <div className="box2">
-        <p>from Form:</p>
-        <div className="box">
-          <div className="box2">
-            <p>{form.title}</p>
-          </div>
-          <div className="box2">
-            <p>{form.price}</p>{" "}
-          </div>
-          <div className="box2">
-            <p>{form.description}</p>{" "}
-          </div>
-        </div>
-      </div>
+   
       <div className="box">
         <table className="table table-sm table-hover ">
           <thead>
@@ -210,6 +197,20 @@ const Home = (props) => {
             })}
           </tbody>
         </table>
+      </div>
+      <div className="box2">
+        <p>from Form:</p>
+        <div className="box">
+          <div className="box2">
+            <p>{form.title}</p>
+          </div>
+          <div className="box2">
+            <p>{form.price}</p>{" "}
+          </div>
+          <div className="box2">
+            <p>{form.description}</p>{" "}
+          </div>
+        </div>
       </div>
     </>
   );
