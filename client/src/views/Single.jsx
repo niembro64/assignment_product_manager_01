@@ -28,11 +28,15 @@ const Single = (props) => {
   }, [_id]);
 
   const onDeleteHandler = (_id) => {
-    console.log("inside on click delete");
-    axios
-      .delete(`http://localhost:9000/api/pm/delete/${_id}`)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    if (
+      window.confirm(`Are you sure you want to delete this item?`)
+    ) {
+      console.log("inside on click delete");
+      axios
+        .delete(`http://localhost:9000/api/pm/delete/${_id}`)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+    }
   };
 
   return (

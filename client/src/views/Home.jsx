@@ -68,16 +68,20 @@ const Home = (props) => {
   };
 
   const onDeleteHandler = (_id, arrIndex) => {
-    console.log("inside on click delete");
-    axios
-      .delete(`http://localhost:9000/api/pm/delete/${_id}`)
-      .then((res) => {
-        console.log(res.data);
-        const copyState = [...fromDb];
-        copyState.splice(arrIndex, 1);
-        setFromDb(copyState);
-      })
-      .catch((err) => console.log(err));
+    if (
+      window.confirm(`Are you sure you want to delete item ${arrIndex + 1}?`)
+    ) {
+      console.log("inside on click delete");
+      axios
+        .delete(`http://localhost:9000/api/pm/delete/${_id}`)
+        .then((res) => {
+          console.log(res.data);
+          const copyState = [...fromDb];
+          copyState.splice(arrIndex, 1);
+          setFromDb(copyState);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
