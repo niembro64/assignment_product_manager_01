@@ -100,42 +100,87 @@ const Home = (props) => {
         <p>from Form:</p>
         <div className="box">
           <div className="box2">
-            <p>Title: {form.title}</p>
+            <p>{form.title}</p>
           </div>
           <div className="box2">
-            <p>Price: {form.price}</p>{" "}
+            <p>{form.price}</p>{" "}
           </div>
           <div className="box2">
-            <p>Description: {form.description}</p>{" "}
+            <p>{form.description}</p>{" "}
           </div>
         </div>
       </div>
-      <div className="box2">
+      {/* <div className="box2">
         <p>from DB:</p>
         <div className="box">
           <p>Assignment: {dbtest.assignment}</p>
           <p>Port: {dbtest.port}</p>
         </div>
-      </div>
-      <div className="box2">
+      </div> */}
+      {/* <div className="box2">
         <p>from DB:</p>
         {fromDb.map((item, i) => {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
-            <div className="box" key={i}>
-              <Link to={`/${item._id}`}>
-                <button className="btn btn-primary mx-4">View</button>
-              </Link>
-              <Link to={`/${item._id}`}>
-                <button className="btn btn-primary mx-4">Delete</button>
-              </Link>
-              <p name="_id">{item._id}</p>
-              <p name="title">{item.title}</p>
-              <p name="price">{item.price}</p>
-              <p name="description">{item.description}</p>
-            </div>
+            <>
+              <div className="box" key={i}>
+                <Link to={`/${item._id}`}>
+                  <button className="btn btn-primary mx-4">View</button>
+                </Link>
+                <Link to={`/${item._id}`}>
+                  <button className="btn btn-primary mx-4">Delete</button>
+                </Link>
+                <p name="_id">{item._id}</p>
+                <p name="title">{item.title}</p>
+                <p name="price">{item.price}</p>
+                <p name="description">{item.description}</p>
+              </div>
+            </>
           );
         })}
+      </div> */}
+      <div className="box">
+        <table className="table table-dark table-striped table-hover">
+          <thead>
+            <tr>
+              {/* <th>ID</th> */}
+              <th>Title</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {fromDb.map((item, i) => {
+              // console.log(`function run ${i}, item: ${item.title}`);
+              return (
+                <tr>
+                  {/* <td>{item._id}</td> */}
+                  <td>{item.title}</td>
+                  <td>{item.price}</td>
+                  <td>{item.description}</td>
+                  <td>
+                    <Link to={`/${item._id}`}>
+                      <button className="btn btn-secondary mx-4">View</button>
+                    </Link>
+                  </td>
+                  <td>
+                    <Link to={`/${item._id}`}>
+                      <button className="btn btn-success mx-4">Edit</button>
+                    </Link>
+                  </td>
+                  <td>
+                    <Link to={`/${item._id}`}>
+                      <button className="btn btn-danger mx-4">Delete</button>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );
