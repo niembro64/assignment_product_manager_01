@@ -7,12 +7,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Home = (props) => {
   const [dbtest, setDbtest] = useState({ assignment: "none", port: 0 });
   const [form, setForm] = useState({
+    _id: "default",
     title: "default",
     price: "default",
     description: "default",
   });
   const [fromDb, setFromDb] = useState([]);
   const history = useHistory();
+  const [url, setUrl] = useState("/");
   // history.push(`/${category}/${detail}`);
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const Home = (props) => {
     axios
       .get("http://localhost:9000/api/pm/")
       .then((res) => {
-        // console.log(res.data);
+        // console.log(res);
         setFromDb(res.data);
       })
       .catch((err) => console.log(err));
@@ -76,8 +78,9 @@ const Home = (props) => {
   };
 
   const getURL = (event) => {
-    console.log("/" + event.target._id);
-    return "/" + event.target._id;
+    var u = "/" + event.data.target._id;
+    // p(u)
+    setUrl(u);
   };
 
   return (
@@ -130,19 +133,12 @@ const Home = (props) => {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
             <div className="box" key={i}>
-              {/* <Link
-                to={(event) => {
-                  getURL(event);
-                }}
+              <Link
+                to={`/${item._id}`}
               >
                 Go
-              </Link> */}
-              <button
-              className="btn btn-primary mx-4"
-                onClick={(event) => {
-                  getURL(event);
-                }}
-              >View One</button>
+              </Link>
+
               <p name="_id">{item._id}</p>
               <p name="title">{item.title}</p>
               <p name="price">{item.price}</p>
