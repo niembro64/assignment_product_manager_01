@@ -7,20 +7,17 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Home = (props) => {
   const [dbtest, setDbtest] = useState({ assignment: "none", port: 0 });
   const [form, setForm] = useState({
-    _id: "default",
     title: "default",
     price: "default",
     description: "default",
   });
   const [fromDb, setFromDb] = useState([]);
   const history = useHistory();
-  const [url, setUrl] = useState("/");
   // history.push(`/${category}/${detail}`);
 
   useEffect(() => {
     p("useEffect Running");
 
-    // pulling hello data
     axios
       .get("http://localhost:9000/api")
       .then((res) => {
@@ -29,7 +26,6 @@ const Home = (props) => {
       })
       .catch((err) => console.log(err));
 
-    // pulling elements
     updateFromDb();
   }, []);
 
@@ -47,7 +43,7 @@ const Home = (props) => {
     axios
       .get("http://localhost:9000/api/pm/")
       .then((res) => {
-        // console.log(res);
+        console.log(res.data);
         setFromDb(res.data);
       })
       .catch((err) => console.log(err));
@@ -75,12 +71,6 @@ const Home = (props) => {
       [event.target.name]: event.target.value,
     };
     setForm(newState);
-  };
-
-  const getURL = (event) => {
-    var u = "/" + event.data.target._id;
-    // p(u)
-    setUrl(u);
   };
 
   return (
@@ -133,12 +123,9 @@ const Home = (props) => {
           // console.log(`function run ${i}, item: ${item.title}`);
           return (
             <div className="box" key={i}>
-              <Link
-                to={`/${item._id}`}
-              >
-                Go
+              <Link to={`/${item._id}`}>
+                <button className="btn btn-primary mx-4">View Item</button>
               </Link>
-
               <p name="_id">{item._id}</p>
               <p name="title">{item.title}</p>
               <p name="price">{item.price}</p>
