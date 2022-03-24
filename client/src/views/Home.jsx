@@ -124,7 +124,10 @@ const Home = (props) => {
           return (
             <div className="box" key={i}>
               <Link to={`/${item._id}`}>
-                <button className="btn btn-primary mx-4">View Item</button>
+                <button className="btn btn-primary mx-4">View</button>
+              </Link>
+              <Link to={`/${item._id}`}>
+                <button className="btn btn-primary mx-4">Delete</button>
               </Link>
               <p name="_id">{item._id}</p>
               <p name="title">{item.title}</p>
