@@ -50,9 +50,17 @@ const Edit = (props) => {
             }}
             className="btn btn-danger btn-sm"
           >
-            delete{" "}
+            delete
           </button>
         </Link>
+      </div>
+      <div className="box">
+          <form >
+{/* 
+            <label htmlFor=""></label>
+            <input type="text"/> */}
+
+          </form>
       </div>
     </>
   );
